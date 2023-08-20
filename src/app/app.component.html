@@ -1,0 +1,80 @@
+<a routerLink="home" style="text-decoration: none; color: black">Home</a>
+<router-outlet></router-outlet>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+  <table>
+    <tr>
+      <td>First name</td>
+      <td><input type="text" formControlName="firstName" /></td>
+      <td>
+        <div *ngIf="submitted && f.firstName.errors">
+          <div *ngIf="f.firstName.errors.required">First name is required</div>
+          <div *ngIf="f.firstName.errors.pattern">First name must be valid</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Last name</td>
+      <td><input type="text" formControlName="lastName" /></td>
+      <td>
+        <div *ngIf="submitted && f.lastName.errors">
+          <div *ngIf="f.lastName.errors.required">Last name is required</div>
+          <div *ngIf="f.lastName.errors.pattern">Last name must be valid</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td><input type="text" formControlName="mobile" /></td>
+      <td>
+        <div *ngIf="submitted && f.mobile.errors">
+          <div *ngIf="f.mobile.errors.required">Mobile name is required</div>
+          <div *ngIf="f.mobile.errors.pattern">Mobile name must be valid</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+First name = {{ firstName }} <br />
+Last name = {{ lastName }}
+
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+  <table>
+    <tr>
+      <td>First name</td>
+      <td>
+        <input
+          type="text"
+          name="firstName"
+          [(ngModel)]="model.firstName"
+          #firstName="ngModel"
+          required
+          pattern="^(A-Za-z){8,15}"
+        />
+      </td>
+      <td>
+        <div *ngIf="f.submitted && firstName.invalid">
+          <div *ngIf="firstName.errors.required">Req</div>
+          <div *ngIf="firstName.errors.pattern">not valid</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td>
+        <input
+          type="text"
+          name="mobile"
+          [(ngModel)]="model.mobile"
+          #mobile="ngModel"
+          required
+        />
+      </td>
+      <td>
+        <div *ngIf="f.submitted && mobile.invalid">
+          <div *ngIf="mobile.errors.required">req</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
