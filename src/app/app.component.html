@@ -8,7 +8,8 @@
       <td><input type="text" formControlName="firstName" /></td>
       <td>
         <div *ngIf="submitted && f.firstName.errors">
-          <div *ngIf="f.firstName.errors.required">First name is required</div>
+          <!-- fixed code -->
+          <div *ngIf="f.firstName.errors.required">First name is required.</div>
           <div *ngIf="f.firstName.errors.pattern">First name must be valid</div>
         </div>
       </td>
